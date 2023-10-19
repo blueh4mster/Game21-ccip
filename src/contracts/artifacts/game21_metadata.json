@@ -1,0 +1,932 @@
+{
+	"compiler": {
+		"version": "0.8.19+commit.7dd6d404"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "router",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "router",
+						"type": "address"
+					}
+				],
+				"name": "InvalidRouter",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "messageId",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint64",
+						"name": "sourceChainSelector",
+						"type": "uint64"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					},
+					{
+						"components": [
+							{
+								"internalType": "bytes32",
+								"name": "sessionId",
+								"type": "bytes32"
+							},
+							{
+								"internalType": "address",
+								"name": "player_1",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "player_2",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "winner",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "turn",
+								"type": "address"
+							},
+							{
+								"internalType": "uint8",
+								"name": "player1Status",
+								"type": "uint8"
+							},
+							{
+								"internalType": "uint8",
+								"name": "player2Status",
+								"type": "uint8"
+							}
+						],
+						"indexed": false,
+						"internalType": "struct game21.GameSession",
+						"name": "message",
+						"type": "tuple"
+					}
+				],
+				"name": "MessageReceived",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "messageId",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint64",
+						"name": "destinationChainSelector",
+						"type": "uint64"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					},
+					{
+						"components": [
+							{
+								"internalType": "bytes32",
+								"name": "sessionId",
+								"type": "bytes32"
+							},
+							{
+								"internalType": "address",
+								"name": "player_1",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "player_2",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "winner",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "turn",
+								"type": "address"
+							},
+							{
+								"internalType": "uint8",
+								"name": "player1Status",
+								"type": "uint8"
+							},
+							{
+								"internalType": "uint8",
+								"name": "player2Status",
+								"type": "uint8"
+							}
+						],
+						"indexed": false,
+						"internalType": "struct game21.GameSession",
+						"name": "message",
+						"type": "tuple"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "fees",
+						"type": "uint256"
+					}
+				],
+				"name": "MessageSent",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferRequested",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "_router",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "acceptOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"components": [
+							{
+								"internalType": "bytes32",
+								"name": "messageId",
+								"type": "bytes32"
+							},
+							{
+								"internalType": "uint64",
+								"name": "sourceChainSelector",
+								"type": "uint64"
+							},
+							{
+								"internalType": "bytes",
+								"name": "sender",
+								"type": "bytes"
+							},
+							{
+								"internalType": "bytes",
+								"name": "data",
+								"type": "bytes"
+							},
+							{
+								"components": [
+									{
+										"internalType": "address",
+										"name": "token",
+										"type": "address"
+									},
+									{
+										"internalType": "uint256",
+										"name": "amount",
+										"type": "uint256"
+									}
+								],
+								"internalType": "struct Client.EVMTokenAmount[]",
+								"name": "destTokenAmounts",
+								"type": "tuple[]"
+							}
+						],
+						"internalType": "struct Client.Any2EVMMessage",
+						"name": "message",
+						"type": "tuple"
+					}
+				],
+				"name": "ccipReceive",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "playerStatus",
+						"type": "uint8"
+					}
+				],
+				"name": "checkWin",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"name": "gameSessions",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "sessionId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "player_1",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "player_2",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "winner",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "turn",
+						"type": "address"
+					},
+					{
+						"internalType": "uint8",
+						"name": "player1Status",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint8",
+						"name": "player2Status",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getLastReceivedMessageDetails",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "messageId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint64",
+						"name": "sourceChainSelector",
+						"type": "uint64"
+					},
+					{
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					},
+					{
+						"components": [
+							{
+								"internalType": "bytes32",
+								"name": "sessionId",
+								"type": "bytes32"
+							},
+							{
+								"internalType": "address",
+								"name": "player_1",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "player_2",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "winner",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "turn",
+								"type": "address"
+							},
+							{
+								"internalType": "uint8",
+								"name": "player1Status",
+								"type": "uint8"
+							},
+							{
+								"internalType": "uint8",
+								"name": "player2Status",
+								"type": "uint8"
+							}
+						],
+						"internalType": "struct game21.GameSession",
+						"name": "message",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getNumberOfReceivedMessages",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "number",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_sessionId",
+						"type": "bytes32"
+					}
+				],
+				"name": "getPlayer1Status",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_sessionId",
+						"type": "bytes32"
+					}
+				],
+				"name": "getPlayer2Status",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getRouter",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"name": "messageDetail",
+				"outputs": [
+					{
+						"internalType": "uint64",
+						"name": "sourceChainSelector",
+						"type": "uint64"
+					},
+					{
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					},
+					{
+						"components": [
+							{
+								"internalType": "bytes32",
+								"name": "sessionId",
+								"type": "bytes32"
+							},
+							{
+								"internalType": "address",
+								"name": "player_1",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "player_2",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "winner",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "turn",
+								"type": "address"
+							},
+							{
+								"internalType": "uint8",
+								"name": "player1Status",
+								"type": "uint8"
+							},
+							{
+								"internalType": "uint8",
+								"name": "player2Status",
+								"type": "uint8"
+							}
+						],
+						"internalType": "struct game21.GameSession",
+						"name": "message",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "player",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "sessionId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint8",
+						"name": "num",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint64",
+						"name": "destinationChainSelector",
+						"type": "uint64"
+					},
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					}
+				],
+				"name": "move",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "receivedMessages",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint64",
+						"name": "destinationChainSelector",
+						"type": "uint64"
+					},
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					},
+					{
+						"components": [
+							{
+								"internalType": "bytes32",
+								"name": "sessionId",
+								"type": "bytes32"
+							},
+							{
+								"internalType": "address",
+								"name": "player_1",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "player_2",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "winner",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "turn",
+								"type": "address"
+							},
+							{
+								"internalType": "uint8",
+								"name": "player1Status",
+								"type": "uint8"
+							},
+							{
+								"internalType": "uint8",
+								"name": "player2Status",
+								"type": "uint8"
+							}
+						],
+						"internalType": "struct game21.GameSession",
+						"name": "message",
+						"type": "tuple"
+					}
+				],
+				"name": "sendMessage",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "messageId",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "sessionIds",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint64",
+						"name": "destinationChainSelector",
+						"type": "uint64"
+					},
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					}
+				],
+				"name": "start",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes4",
+						"name": "interfaceId",
+						"type": "bytes4"
+					}
+				],
+				"name": "supportsInterface",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "routerAddr",
+						"type": "address"
+					}
+				],
+				"name": "updateRouter",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "withdraw",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"ccipReceive((bytes32,uint64,bytes,bytes,(address,uint256)[]))": {
+					"details": "Note ensure you check the msg.sender is the OffRampRouter",
+					"params": {
+						"message": "CCIP Message"
+					}
+				},
+				"getRouter()": {
+					"returns": {
+						"_0": "i_router address"
+					}
+				},
+				"supportsInterface(bytes4)": {
+					"params": {
+						"interfaceId": "The interfaceId to check"
+					},
+					"returns": {
+						"_0": "true if the interfaceId is supported"
+					}
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"acceptOwnership()": {
+					"notice": "Allows an ownership transfer to be completed by the recipient."
+				},
+				"ccipReceive((bytes32,uint64,bytes,bytes,(address,uint256)[]))": {
+					"notice": "Called by the Router to deliver a message. If this reverts, any token transfers also revert. The message will move to a FAILED state and become available for manual execution."
+				},
+				"getRouter()": {
+					"notice": "Return the current router"
+				},
+				"owner()": {
+					"notice": "Get the current owner"
+				},
+				"supportsInterface(bytes4)": {
+					"notice": "IERC165 supports an interfaceId"
+				},
+				"transferOwnership(address)": {
+					"notice": "Allows an owner to begin transferring ownership to a new address, pending."
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/game21.sol": "game21"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/game21.sol": {
+			"keccak256": "0x6140fc0ce5bb802857ed768e2f6219fde1f74f214e26e9cfd9e9513e05f2a69e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://3244f2bcef4f3c30307fc47651e127e9342d58401d8bd751d253ac2155f4536e",
+				"dweb:/ipfs/QmVN25hhhUH9qHfHYBkfK4QXVVN23ksZ5BzGDSd8G4TmPY"
+			]
+		},
+		"cross-not-official/contracts/OwnerIsCreator.sol": {
+			"keccak256": "0xb9a890795a532c39766da1c6e8ef202e7bfc39e1a5deef36503be4fcdd360e2f",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://2112758933edb2f9dc368a4d426f5db9d3556d9592d68fa37f83c5946f985fe9",
+				"dweb:/ipfs/QmV36JwTwSSrAgt5zvPiuo1NhVWacokJKrtHqVVBePUNFo"
+			]
+		},
+		"cross-not-official/contracts/applications/CCIPReceiver.sol": {
+			"keccak256": "0xbe54004dbe08d943c30e79db6c77d5d9f11915d356b07b5b89331d9503383272",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://3c32996f91911872cf5fe4bfc6de2c86cfc2232693ab00bafc46af518189b19e",
+				"dweb:/ipfs/QmUCeUd2G1jNVX3MaoJdHtTzprnvwvaYRQBbSDXgmnt3xm"
+			]
+		},
+		"cross-not-official/contracts/interfaces/IAny2EVMMessageReceiver.sol": {
+			"keccak256": "0x8c378d493cb48c2094bb3a08e0934c9fd9ae2690cab9df12119329c10d585fec",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://e14cc78c3210475709c6d0a6ab6ef9a5532acb8467e87ae32d8aea8e687b51fd",
+				"dweb:/ipfs/QmfBChjRsdGTuEjjKVyALeXG6mMxXDJtDdHikkyyqMv7uQ"
+			]
+		},
+		"cross-not-official/contracts/interfaces/IRouterClient.sol": {
+			"keccak256": "0xbf5471e441597fcf9a04280d222474b18f87fea901116dd3c4c20823009332fc",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://93514ee7e3ba94ba5fbb6904045ad1fe6bdc85e53cd45dd888b9756dbf7a0e7b",
+				"dweb:/ipfs/QmcitG6SVwvNCvgvzpye1yX4HFR33urJFCDTwX4d1rUepu"
+			]
+		},
+		"cross-not-official/contracts/libraries/Client.sol": {
+			"keccak256": "0xf2616f59db15ba0493e4ce3514ea0655cbc9b65ee754e7fc012fe19752659574",
+			"license": "BUSL-1.1",
+			"urls": [
+				"bzz-raw://3ebc41940d13751005c195f743f5f22cc1e7b98f6d72cc10116b4853b5ac9837",
+				"dweb:/ipfs/QmNweYHQHsTLWFa9cy8XJgxFRgH97XLAGxPw3k8diwrTj6"
+			]
+		},
+		"cross-not-official/libraries/internal/ConfirmedOwner.sol": {
+			"keccak256": "0x99d0b0786fe368970009c703f2249bfbc56340ddf1a28b60d2915bb58c34cd72",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://af0371c1af45db651823b9a3d5af761b08243c78f105166342eee28de356c8dd",
+				"dweb:/ipfs/QmPnC9qNDKwJFd5unwLb9pxjrutoe8MWjm5EXHTxq2kJ4x"
+			]
+		},
+		"cross-not-official/libraries/internal/ConfirmedOwnerWithProposal.sol": {
+			"keccak256": "0xa2f137a1d066795aeac76226e58f33c982278cdd34b4f09e5a2243d5a0924654",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a73f185d79d82e6d9baa531d55ffb88c80def1f6187dff93d3df6b2cb5ab7187",
+				"dweb:/ipfs/QmVZEePJvcN1KxSTaD5rhKhaMBWHqs6ZeZ5s17Ft6mR5hJ"
+			]
+		},
+		"cross-not-official/libraries/internal/interfaces/OwnableInterface.sol": {
+			"keccak256": "0xb8b3a97783dddc198b790c4cec1eda7fb47aa38cbaea6555220d0ed8c735c086",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://acf7ed6aff47fbddeff1b85e1225a717dfa8bfb3ab89db0e6564346afcf03693",
+				"dweb:/ipfs/QmQQn5sKn1ARbt1WhYoHwfTJhK8fbQi8MbDQeHxGXTPbPE"
+			]
+		},
+		"cross-not-official/vendor/openzeppelin-solidity/v4.8.0/token/ERC20/IERC20.sol": {
+			"keccak256": "0xf7a52b7d3a7b79117544d6bbeb8564bd22c760c4937d69914b99641a957a8f2a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://2b5afd167693d0e80d30d0f50b718b5df237c97d721383b97154049cabab1128",
+				"dweb:/ipfs/QmZpVB96pJpaJmmnqB1RC3qSZk8upgLL22YZtq97JzpK5H"
+			]
+		},
+		"cross-not-official/vendor/openzeppelin-solidity/v4.8.0/utils/introspection/IERC165.sol": {
+			"keccak256": "0xac7a4bfe791ee9fe125cac5cd25795b326433e5cf2bdd6b02ad6ad42c2d126a5",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e49bdba6c6013040eb546db3bbceca7d2c8ac86a2c15ff2c85eacd0ed8541271",
+				"dweb:/ipfs/QmYa5en1yth7SdJfq9M7mcwDJJvy3996PSEjiwzgH1HvJW"
+			]
+		}
+	},
+	"version": 1
+}
